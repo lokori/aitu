@@ -20,6 +20,7 @@ deploy:
   bucket: "$ARTIFACTS_BUCKET"
   local_dir: schemadocs
   acl: public_read
+  region: "eu-west-1"
 
 addons:
   postgresql: "9.3"

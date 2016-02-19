@@ -13,7 +13,6 @@ before_install:
   
 before_script:
   - psql --file=../env/db/dev.sql
-  - cd ttk-db
 
 script:
   - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:2345/ttk' -u ttk_user --aituhaku-username aituhaku_user --clear -t

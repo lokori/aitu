@@ -9,6 +9,7 @@ deploy:
   secret_access_key: "$ARTIFACTS_KEY"
   bucket: opetushallitus-docs
   local-dir: schemadocs
+  upload-dir: aitu
   acl: public_read
   skip_cleanup: true
   region: eu-west-1

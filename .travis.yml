@@ -3,17 +3,17 @@ language: clojure
 addons:
   postgresql: '9.3'
 
-#deploy:
-#  provider: s3
-#  access_key_id: "$ARTIFACTS_ID"
-#  secret_access_key: "$ARTIFACTS_KEY"
-#  bucket: opetushallitus-docs
-#  local-dir: schemadocs
-#  acl: public_read
-#  skip_cleanup: true
-#  region: eu-west-1
-#  on:
-#    repo: lokori/aitu    
+deploy:
+  provider: s3
+  access_key_id: "$ARTIFACTS_ID"
+  secret_access_key: "$ARTIFACTS_KEY"
+  bucket: opetushallitus-docs
+  local-dir: schemadocs
+  acl: public_read
+  skip_cleanup: true
+  region: eu-west-1
+  on:
+    repo: lokori/aitu    
 
 services:
 - postgresql
@@ -26,16 +26,15 @@ before_script:
   - psql --file=../env/db/dev.sql
 
 script:
-- lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username
-  aituhaku_user --clear -t
-- cd ..
-- cd ttk
-- lein test
-- "echo db.port = 5432 > ttk.properties"
-- lein test :integraatio
+ - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username
+   aituhaku_user --clear -t
+ - cd ..
+ - cd ttk
+ - lein test
+# - echo db.port=5432 > ttk.properties
+# - lein test :integraatio
+  - cd ../db-docs
+  - generate-schemadocs.sh
 
-# - cd ../db-docs
-# - generate-schemadocs.sh
-
-# after_script:
-# - ls -latr schemadocs
+#after_script:
+#  - ls -latr schemadocs

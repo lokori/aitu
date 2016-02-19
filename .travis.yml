@@ -4,14 +4,14 @@ addons:
   postgresql: '9.3'
 deploy:
   provider: s3
-  skip_cleanup: true
-  bucket: "opetushallitus-docs"
-  local_dir: schemadocs
-  acl: public_read
-  region: eu-west-1
-  access_key_id: "$ARTIFACTS_KEY"
+  access_key_id: $ARTIFACT_KEY
   secret_access_key:
-    secure: CP+kfXmTBH61eO43916RgHij7GHokZ3JiugrTeInX2b3qFUWJJyu1lPKVH6hnfMKN829JjXJv657SF5kl6UD8viL/ft1VhJMO4ShWXoyhU2bzDo9BGcOYj1vviqkH095XoxDmeFdIcK68l7qG2Fc2o2D26q2TMN0VQGay9hSggx5RypK4sIBK9bVAh+xu+M5mewj2AOK7dPXzTPnpUVfteGcHXDgkKYfs44nPXLCcHuQ0TKaC6sQbmV7vZMtE0tkLPSjPwam9GiH15li1OotP8t29yEJv0X6zQfT3k5iG/qhgVUbLwG5385/oOWRtiTJt/J1QOvF8Uzn9KnOiHpnSS+dT1lAU6ro2s4IsB6LDRkM4Nec2GEBXrWbobwc6rYu9f1OcO+QsIIyr7VKoaOScyUBEJIWDKY5DbEozQqf++Byh4acfGaojY5UWO2bSjSOK2aBZXhC8FP9EcGW/YX5BeeP7NLsAjm1B7q1NiY7EAgTJL6t8aq/0m1s1nUwPbcO25cbpidAWUPLH0nWnvdk8+JzkKWWfgpkCwZBUG/UrUoXdbxbzB+E31EEtiehFeoFlnto5Jzgfx4oa44/Y86AI/pr36gqfj/wW0Kww2vfvPBJOa99utoEZG9CWMWNK6kcUn4vvK4fMwP4GuyjdA3QaZpJ5B2CO2dHfmp/vF/1cfU=
+    secure: YIiyrktBhpfg1AS5eQVOJeUzVuLxP2AsQgdQI2CksD06oigyOqOLopkDOXAa5rNzNv6IIU63Sk/SNGtDpGx2Vd6ynDA28RL5/PWS1Gx9vTrsZeyEL2TU9gjA9PsgjMoBTtRR7V3GJIH3jyWlllat5CP62VhV60Ge9Ai5wElpUwojoIsRGJxyE1Q/xfv37X2u1wYCK376RXlxotME6G4Ugls9zqMVgAeypqIqaWeVFJ9bovHQvQpj7iqVymmNY7dCCIm4TDPcUezoKsDHWlUe98w4cvvyOGO8HJVTMOvnLzNPRvN4snvulnJEDTxPwq5m5jpD99wxZpJdi8IvzH0jbitGXWzg7MUMfI+0xAWrH+cWENebPoCXZjj986q34Qm1m7XiJP1t7ZgtFmTO7kAyMaflilwFLc1Pr4icsuMTh7/Z//HdKlfunrJOUedk2mdlZdf4SLbZUxSJMgGyP53pQRcsbalzjaY6g2/pRK4dNWLhRknAZGTYpMXN3kTW9KYAozZMXaE2l9lnx3IyWR2PGX3czp7Z84PBxWsMwXHJLc+YWMu9uzZs5llMqMSD3nWe8gwWIAVLLxCRBclhc5G1fQGV3nP7WBeLCkRz67aZSFRUqJGx2CkXcbBGD33G8DP4PKv0eDxK/A89mnIPyNDceUYs+36DS/JzJgQRsUkzg38=
+  bucket: opetushallitus-docs
+  local-dir: schemadocs
+  acl: public_read
+  on:
+    repo: lokori/aitu
 services:
 - postgresql
 before_install:

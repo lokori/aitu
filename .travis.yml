@@ -3,41 +3,34 @@ sudo: required
 language: clojure
 
 addons:
-  debug: true
-  artifacts: true
-  s3_region: "eu-west-1"
-  paths:
-    - db-docs/schemadocs
-#   - $(git ls-files -o | tr "\n" ":")
-#   - $(ls /var/log/*.log | tr "\n" ":")
-#   - $HOME/some/other/thing.log
+  postgresql: '9.3'
 
 deploy:
   provider: s3
   skip_cleanup: true
-  access_key_id: "$ARTIFACTS_KEY"
-  secret_access_key: "$ARTIFACTS_SECRET"
-  bucket: "$ARTIFACTS_BUCKET"
+  secret_access_key:
+    secure: RA1Y7yPjAT19L5YdLwXQEXejHcNs2ZwIrtQI/+V8WQburEVY8OMhSAZwWBh58MY39h81olB+dCHY811sk9zPYnDNU/WZMJGWOsSTEpkBWYC62lGxBl/Zaka+mBT34one5gsvpuzGcADm/Y8hgbp1HCNdsBO6OR9dHw9smyvrvieW3CfNh8ddL44uYeNb8eP9oXVEhv5SVH+wIGL5oSgSJo/yS69QPeGdktMeo3F6vbVOiD9gA8tr1O9uORa1Qzq6zx3x3BEAFvYyWiL3xPg2yi+f3S/ZJyG53JeVd22HSUl/iTJJSTcDN6+G2+3228+vfHcwliOjQAiv1cp6ekLqp9wx1ATEZE8l6PMGbyuGlYb9SmhtqEFLnhu22dWdCRo/02QZ9FbXTbKVdMbi4GbLchE6UtzybF6doaZYuOejKl4n7iIRkdbT7YjQO2szSq6QpjaahP6ivQgVGv8bHVZw5YzPSE1UiQYGVqekbYK5NYCNSds5FRFJwTHBjIGfOUmcIKbavQpSRGCj+p6NJ2gRYOSOAPMdtbG552QfhlPwwDc+BSPOwNbtWt/ZzFYow8qnVHBVfckaNGRfane+WEJK64oVziDAzvXHLDrGpBrQsejxXH4S+1VTJ6xMeUablddFHTIaaYlY6RYZFA++OWRiReAVEMeahyTh3nx0g0fUVB4=
+  bucket: opetushallitus-docs
   local_dir: schemadocs
   acl: public_read
-  region: "eu-west-1"
-
-addons:
-  postgresql: "9.3"
+  region: eu-west-1
+  secret_access_id:
+    secure: I2Fy5ilLPJKIa1MrrOwgcOfwNK6KkU3MUKItiFzb/FLbvDu2ezs7g31tvaFGyt/bIBtTHZIrgPt0KIQHZKSVN1ZvFxgenxSEOJpe4kZzYt5XlNOpTujUQDip0pBu3f6uzQo+binfgCgMqpwNJ/i+7e9PUTeQFY+fGsmaRfxsZcO1DjWCczmUgQa/7pI50X6s3TJk6gLFaqLknqtE4TOpOvQEqztBSVYdNeTuwa1kpYQtZv6B1r9VYiqARzgSjuFx0joPlF4fi183qlQToKS+2D0QD1GYmkfaP3M9GJsOhtGt4tYTYg/B0Y6lyT5nWffDm1mkOmWh48p90snNmm/r741j0TtAKHGQvCR8RZXcSEkokGYfW6n4+slNw8NX72CXjbbTVQVQP8WnDJDHtbXLULyd5Ff5E1ykUoZIOT33z/tKX0TzmrGVf+QByTZHrv3/p1ADgaMTbJ50OwmcbSUFhW7oyK6jAFdn/CHYcqhh+rknl5JTqGDZ/SMYQ4qjisDujZyWgLuRWlcsgRqtJRbDfkN0q4eCzBEPhGdb1BaS+JJKYGGdNILjwFuh3xIgKJFdKsme0Y7BK6OeKUPNWP4MxWgq5uTY2c9bz9WcT3+KBch+SGYT+469HrzEI7b5b8EYtUG7X9e1VRUEL6W8WBMWipZj7nOaS/H97BZ2GbIzuM0=
 
 services:
-  - postgresql
+- postgresql
 
 before_install:
-  - cd ttk-db
-  
+- cd ttk-db
+
 before_script:
-  - psql --file=../env/db/dev.sql
+- psql --file=../env/db/dev.sql
 
 script:
-  - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username aituhaku_user --clear -t
-  - cd ../db-docs
-  - generate-schemadocs.sh
+- lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username
+  aituhaku_user --clear -t
+- cd ../db-docs
+- generate-schemadocs.sh
 
 after_script:
-  - ls -latr schemadocs
+- ls -latr schemadocs

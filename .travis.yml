@@ -1,35 +1,27 @@
 sudo: required
-
 language: clojure
-
 addons:
   postgresql: '9.3'
-
 deploy:
   provider: s3
   skip_cleanup: true
-  secret_access_key:
-    secure: RA1Y7yPjAT19L5YdLwXQEXejHcNs2ZwIrtQI/+V8WQburEVY8OMhSAZwWBh58MY39h81olB+dCHY811sk9zPYnDNU/WZMJGWOsSTEpkBWYC62lGxBl/Zaka+mBT34one5gsvpuzGcADm/Y8hgbp1HCNdsBO6OR9dHw9smyvrvieW3CfNh8ddL44uYeNb8eP9oXVEhv5SVH+wIGL5oSgSJo/yS69QPeGdktMeo3F6vbVOiD9gA8tr1O9uORa1Qzq6zx3x3BEAFvYyWiL3xPg2yi+f3S/ZJyG53JeVd22HSUl/iTJJSTcDN6+G2+3228+vfHcwliOjQAiv1cp6ekLqp9wx1ATEZE8l6PMGbyuGlYb9SmhtqEFLnhu22dWdCRo/02QZ9FbXTbKVdMbi4GbLchE6UtzybF6doaZYuOejKl4n7iIRkdbT7YjQO2szSq6QpjaahP6ivQgVGv8bHVZw5YzPSE1UiQYGVqekbYK5NYCNSds5FRFJwTHBjIGfOUmcIKbavQpSRGCj+p6NJ2gRYOSOAPMdtbG552QfhlPwwDc+BSPOwNbtWt/ZzFYow8qnVHBVfckaNGRfane+WEJK64oVziDAzvXHLDrGpBrQsejxXH4S+1VTJ6xMeUablddFHTIaaYlY6RYZFA++OWRiReAVEMeahyTh3nx0g0fUVB4=
   bucket: "opetushallitus-docs"
   local_dir: schemadocs
   acl: public_read
-  region: eu-west-1
+  region: "eu-west-1"
   access_key_id: "$ARTIFACTS_KEY"
-
+  secret_access_id:
+    secure: VCKBMd912tXD8Kq9+I/JwcXrA7N/j+5pqLcE4dtke3EoL5ZIvsovkrOw+L2OI4jpPSFQr8vGaldh0ACyn4SspIU/2GfWbEtrb2ccboa0zsIx+7Wt0LBsNgPOXaqipLJ+de2mJ0JjVgoQt6TmNKjjvpOw9SVkEb8cCgVCAA7EA/TVKWn+K7LrBkRha3a5lT6CpFMJJaXxUHlcOteB0i23hQc7OH3BedIA5W8llbZgT+IZ021GpyC1Rlix7x16ox+A235dnK4cNQG+eHbo2jpY8hzXhs7lSgiaM2tq/CAjF5xUlX0TDuy6s4/E/O9Qy95+JY90rIQWHAbMIC26EdNWmWlthheSE3PNzcEfWI/Tj2YkRI5yEF7G059JLiFHrfIg48VQ1QBX8+D0o2pV1tR5RF3EAz7aLnPcntpfgluoZiJzSjiNmpxEVQPTnVJM9qT2KxOEyxEHyD3Jqobd/BX8Vwwssau6+kYlc6C767uJvxiEjClRHNl0zOBTypWdjwz6feHPMuMVorjg2z5fKoeNvRgknWkMYzvV5NtwSy2W0KpVlcZJJkDsV3/NTgqT8SAdq2q/wr+q4Y9khWUyZyDcJVRYoSmel2cinWBeW/Q25WdRv70niry/1LwwiQWx4sUvKwPXTLth7/doSK5TXO+yWlP+6wNCqbVVA+p/Q8JXhis=
 services:
 - postgresql
-
 before_install:
 - cd ttk-db
-
 before_script:
 - psql --file=../env/db/dev.sql
-
 script:
 - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username
   aituhaku_user --clear -t
 - cd ../db-docs
 - generate-schemadocs.sh
-
 after_script:
 - ls -latr schemadocs

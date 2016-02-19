@@ -15,5 +15,5 @@ before_script:
   - psql --file=../env/db/dev.sql
 
 script:
-  - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:2345/ttk' -u ttk_user --aituhaku-username aituhaku_user --clear -t
+  - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username aituhaku_user --clear -t
 

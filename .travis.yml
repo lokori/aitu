@@ -16,4 +16,6 @@ before_script:
 
 script:
   - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username aituhaku_user --clear -t
-
+  - cd ../db-docs
+  - generate-schemadocs.sh
+  

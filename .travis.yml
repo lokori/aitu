@@ -23,7 +23,7 @@ before_install:
   - cd ttk-db
 
 before_script:
-- psql --file=../env/db/dev.sql
+  - psql --file=../env/db/dev.sql
 
 script:
 - lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:5432/ttk' -u ttk_user --aituhaku-username
@@ -31,6 +31,7 @@ script:
 - cd ..
 - cd ttk
 - lein test
+- "cat 'db.port = 5432 > ttk.properties"
 - lein test :integraatio
 
 # - cd ../db-docs

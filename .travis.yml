@@ -3,6 +3,15 @@ sudo: required
 language: clojure
 
 addons:
+  artifacts: true
+  s3_region: "eu-west-1"
+  paths:
+    - db-docs/schemadocs
+#   - $(git ls-files -o | tr "\n" ":")
+#   - $(ls /var/log/*.log | tr "\n" ":")
+#   - $HOME/some/other/thing.log
+
+addons:
   postgresql: "9.3"
 
 services:

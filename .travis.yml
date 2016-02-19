@@ -7,11 +7,11 @@ deploy:
   provider: s3
   access_key_id: "$ARTIFACTS_ID"
   secret_access_key: "$ARTIFACTS_KEY"
-  bucket: pylpyranpylpyra
+  bucket: trololololooo
   local-dir: schemadocs
   acl: public_read
   skip_cleanup: true
-  region: us-east-1
+  region: eu-west-1
   on:
     repo: lokori/aitu    
 

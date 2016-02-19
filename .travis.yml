@@ -18,7 +18,7 @@ deploy:
   access_key_id: "$ARTIFACTS_KEY"
   secret_access_key: "$ARTIFACTS_SECRET"
   bucket: "$ARTIFACTS_BUCKET"
-  local_dir: db-docs/schemadocs
+  local_dir: schemadocs
 
 addons:
   postgresql: "9.3"

@@ -12,7 +12,7 @@ before_install:
   - cd ttk-db
   
 before_script:
-  - su postgres -c 'psql --file=env/db/dev.sql'
+  - psql --file=../env/db/dev.sql
   - cd ttk-db
 
 script:

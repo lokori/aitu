@@ -31,7 +31,7 @@ script:
 - cd ..
 - cd ttk
 - lein test
-- "cat 'db.port = 5432 > ttk.properties"
+- "echo db.port = 5432 > ttk.properties"
 - lein test :integraatio
 
 # - cd ../db-docs

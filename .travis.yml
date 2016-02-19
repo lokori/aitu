@@ -5,8 +5,8 @@ addons:
 
 deploy:
   provider: s3
-  access_key_id: AKIAI7SHHMAEONTLBWGA
-  secret_access_key: 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
+  access_key_id: "$ARTIFACTS_ID"
+  secret_access_key: "$ARTIFACTS_KEY"
   bucket: pylpyranpylpyra
   local-dir: schemadocs
   acl: public_read

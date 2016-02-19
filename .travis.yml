@@ -1,0 +1,12 @@
+language: clojure
+
+addons:
+  postgresql: "9.3"
+
+services:
+  - postgresql
+
+before_script:
+  - su postgres -c 'psql --file=env/db/dev.sql'
+  - cd ttk-db && lein run 'postgresql://ttk_adm:ttk-adm@127.0.0.1:2345/ttk' -u ttk_user --aituhaku-username aituhaku_user --clear -t $@
+

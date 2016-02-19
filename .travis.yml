@@ -19,7 +19,8 @@ services:
 - postgresql
 
 before_install:
-- cd ttk-db
+  - "sudo apt-get install graphviz"
+  - cd ttk-db
 
 before_script:
 - psql --file=../env/db/dev.sql

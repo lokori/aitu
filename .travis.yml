@@ -10,7 +10,7 @@ deploy:
   skip_cleanup: true
   secret_access_key:
     secure: RA1Y7yPjAT19L5YdLwXQEXejHcNs2ZwIrtQI/+V8WQburEVY8OMhSAZwWBh58MY39h81olB+dCHY811sk9zPYnDNU/WZMJGWOsSTEpkBWYC62lGxBl/Zaka+mBT34one5gsvpuzGcADm/Y8hgbp1HCNdsBO6OR9dHw9smyvrvieW3CfNh8ddL44uYeNb8eP9oXVEhv5SVH+wIGL5oSgSJo/yS69QPeGdktMeo3F6vbVOiD9gA8tr1O9uORa1Qzq6zx3x3BEAFvYyWiL3xPg2yi+f3S/ZJyG53JeVd22HSUl/iTJJSTcDN6+G2+3228+vfHcwliOjQAiv1cp6ekLqp9wx1ATEZE8l6PMGbyuGlYb9SmhtqEFLnhu22dWdCRo/02QZ9FbXTbKVdMbi4GbLchE6UtzybF6doaZYuOejKl4n7iIRkdbT7YjQO2szSq6QpjaahP6ivQgVGv8bHVZw5YzPSE1UiQYGVqekbYK5NYCNSds5FRFJwTHBjIGfOUmcIKbavQpSRGCj+p6NJ2gRYOSOAPMdtbG552QfhlPwwDc+BSPOwNbtWt/ZzFYow8qnVHBVfckaNGRfane+WEJK64oVziDAzvXHLDrGpBrQsejxXH4S+1VTJ6xMeUablddFHTIaaYlY6RYZFA++OWRiReAVEMeahyTh3nx0g0fUVB4=
-  bucket: opetushallitus-docs
+  bucket: "opetushallitus-docs"
   local_dir: schemadocs
   acl: public_read
   region: eu-west-1

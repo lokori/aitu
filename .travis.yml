@@ -16,7 +16,7 @@ deploy:
     repo: lokori/aitu    
 
 services:
-- postgresql
+ - postgresql
 
 before_install:
   - "sudo apt-get install graphviz"
@@ -31,10 +31,8 @@ script:
  - cd ..
  - cd ttk
  - lein test
-# - echo db.port=5432 > ttk.properties
-# - lein test :integraatio
-  - cd ../db-docs
-  - generate-schemadocs.sh
+ - cd ../db-docs
+ - generate-schemadocs.sh
 
-#after_script:
-#  - ls -latr schemadocs
+after_script:
+  - ls -latr schemadocs

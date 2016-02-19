@@ -12,8 +12,9 @@ deploy:
   local-dir: schemadocs
   acl: public_read
   skip_cleanup: true
+  region: eu-west-1
   on:
-    repo: lokori/aitu
+    repo: lokori/aitu    
 
 services:
 - postgresql
